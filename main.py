@@ -13,6 +13,10 @@ def run_agent():
     # 2. 生成摘要
     daily_summary = summarize_news(raw_news)
 
+    # ... 前面生成摘要的代码 ...
+
+
+
     # 3. 推送消息
     push_to_iphone(daily_summary)
 
