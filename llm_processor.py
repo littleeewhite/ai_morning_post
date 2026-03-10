@@ -63,15 +63,12 @@ def summarize_news(news_items):
         """
 
     try:
-        response = client.chat.completions.create(
-            model="deepseek-chat",
-            messages=[
-                {"role": "system", "content": "你是一个严谨的技术观察员，专注于 AI 技术的工程落地。"},
-                {"role": "user", "content": prompt}
-            ],
-            temperature=0.3,
-            max_tokens=1500
-        )
-        return response.choices[0].message.content
+        response = client.chat.completions.create(...)
+        content = response.choices[0].message.content
+        if not content:
+            print("⚠️ DeepSeek 返回了空内容！")
+        return content
     except Exception as e:
-        return f"大模型生成摘要失败: {e}"
+        # 这一行一定要有，否则报错了你都不知道
+        print(f"❌ 调用 DeepSeek 发生重大崩溃: {e}")
+        return None
